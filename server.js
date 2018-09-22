@@ -1,12 +1,15 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 3000;
 
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
+
+// Middleware on top of Express
 // logs activity on the server
 app.use((req, res, next) => {
   var now = new Date().toString();
@@ -20,10 +23,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintain.hbs');
-});
-
+// Middleware on top of Express
+// app.use((req, res, next) => {
+//     res.render('maintain.hbs');
+// });
+// Middleware on top of Express
 app.use(express.static(__dirname + '/public'));
 
 var currentYear = new Date().getFullYear();
@@ -50,14 +54,7 @@ app.get('/about',(req,res)=>{
     pageDesc:'I am so good'
   });
 });
-//
-// app.get('/bad', (req, res)=>{
-//   res.send({
-//     errorCode: 500,
-//     errorMessage: 'Internal server error occured'
-//   });
-// });
 
-app.listen(3000, () =>{
-  console.log("Server is up on port 3000");
+app.listen(port, () =>{
+  console.log(`Server is up on port ${port}`);
 });
