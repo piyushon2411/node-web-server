@@ -48,10 +48,17 @@ app.get('/', (req, res)=>{
     });
   });
 
+app.get('/portfolio', (req, res)=>{
+      res.render('portfolio.hbs',{
+        pageTitle:'Portfolio Page',
+        pageDesc:'Here I will tell you what all projects I have completed'
+      });
+  });
+
 app.get('/about',(req,res)=>{
   res.render('about.hbs',{
     pageTitle:'About Page',
-    pageDesc:'I am so good'
+    pageDesc:'Nothing much to tell about me'
   });
 });
 
